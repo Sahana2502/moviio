@@ -35,7 +35,7 @@ const DisplayMovies = (props) => {
   });
 
   //sorting movies in descending order of year of release
-  if(data!=null){
+  if(data !== undefined && data.BySearch!==null){
   movies=[...data.BySearch]
   movies.sort((movie1,movie2)=>(movie2.Year.localeCompare(movie1.Year)));
   }
