@@ -28,14 +28,22 @@ const styles = () => ({
 });
 
 const DisplayMovies = (props) => {
-  const { singleTitle, classes } = props;
+  const { singleTitle } = props;
+  let movies;
   const { loading, error, data } = useQuery(RETRIEVE_SEARCH, {
     variables: { singleTitle: singleTitle ? singleTitle : "friends" },
   });
+
+  //sorting movies in descending order of year of release
+  if(data!=null){
+  movies=[...data.BySearch]
+  movies.sort((movie1,movie2)=>(movie2.Year.localeCompare(movie1.Year)));
+  }
+
   if (loading) return "Loading...";
   if (error) return (<Error/>)
-  if (data.BySearch == null) return (<Error singleTitle={singleTitle} />) 
-  return data.BySearch.map((titles, i) => {
+  if (movies == null) return (<Error singleTitle={singleTitle} />) 
+  return movies.map((titles, i) => {
     return (
       <Grid item style={{ margin: "3em 1em" }} key={i}>
         <ImageCard
