@@ -23,8 +23,9 @@ const styles = () => ({
   },
 });
 
+
 let TextInputField = (props) => {
-  const { values, classes, handleChange, submittedValue, isSubmitting } = props;
+  const { values, classes, handleChange, submittedValue, isSubmitting,handleSubmit } = props;
   return (
     <React.Fragment>
       <TextField
@@ -35,7 +36,12 @@ let TextInputField = (props) => {
         name="search"
         placeholder="Movie title"
         value={values}
-        onChange={handleChange}
+        onChange={handleChange}  
+        onKeyPress={(ev) => {
+        if (ev.key === 'Enter') {
+         handleSubmit();
+        }
+      }}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">

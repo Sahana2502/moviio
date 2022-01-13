@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------------------------- //
 
 import React, { Component } from "react";
-import { withFormik } from "formik";
+import { withFormik,Formik } from "formik";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 
@@ -22,6 +22,7 @@ const styles = (theme) => ({
   appBar: {
     backgroundColor: "#2e111a",
     height: "3.5em",
+    //Creates a min-width media query that targets screen sizes greater than or equal to the given breakpoint.
     [theme.breakpoints.up(599)]: {
       height: "3.7em",
     },
@@ -29,19 +30,12 @@ const styles = (theme) => ({
   lowerAppBar: {
     backgroundColor: "#2e111a",
   },
-
-  lowerAppBarToolBar: {
-    justifyContent: "right",
-  },
   gridContainer: {
     justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: "#c2c8e647",
   },
 
-  links: {
-    color: "#000",
-  },
   titleFont: {
     display: "flex",
     flexDirection: "column",
@@ -65,22 +59,13 @@ class Container extends Component {
     this.passSetValueToQuery = this.passSetValueToQuery.bind(this);
   }
 
-
-   keyPress=(e)=>{
-      if(e.keyCode == 13){
-         console.log('value', e.target.value);
-         // put the login here
-      }
-   }
-
-
-
   passSetValueToQuery = () => {
     const { values } = this.props;
     this.setState({
       submittedValue: values.search,
     });
   };
+
 
   render() {
     const { values, classes, handleChange, isSubmitting } = this.props;
@@ -95,8 +80,10 @@ class Container extends Component {
               handleChange={handleChange}
               submittedValue={() => this.passSetValueToQuery()}
               isSubmitting={isSubmitting || !values.search}
-              onKeyDown={this.keyPress}
+              handleSubmit={()=>this.passSetValueToQuery()}
+            
             />
+         
           </Toolbar>
         </AppBar>
         <AppBar
