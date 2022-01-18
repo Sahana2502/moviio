@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------------------------- //
 
 import React, { Component } from "react";
-import { withFormik,Formik } from "formik";
+import { withFormik } from "formik";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 
@@ -16,7 +16,6 @@ import { withStyles } from "@material-ui/core/styles";
 // React components
 import TextInputField from "./textInputField";
 import DisplayMovies from "./displayMovies";
-
 
 const styles = (theme) => ({
   appBar: {
@@ -66,7 +65,6 @@ class Container extends Component {
     });
   };
 
-
   render() {
     const { values, classes, handleChange, isSubmitting } = this.props;
     const { submittedValue } = this.state;
@@ -80,10 +78,8 @@ class Container extends Component {
               handleChange={handleChange}
               submittedValue={() => this.passSetValueToQuery()}
               isSubmitting={isSubmitting || !values.search}
-              handleSubmit={()=>this.passSetValueToQuery()}
-            
+              handleSubmit={() => this.passSetValueToQuery()}
             />
-         
           </Toolbar>
         </AppBar>
         <AppBar
@@ -107,7 +103,6 @@ class Container extends Component {
             </Typography>
           </Toolbar>
         </AppBar>
-
         <Grid container className={classes.gridContainer}>
           <DisplayMovies singleTitle={submittedValue} />
         </Grid>
@@ -116,6 +111,8 @@ class Container extends Component {
   }
 }
 
+// If props being passed into search exists, use that
+// Else return an empty field by default
 let SearchField = withFormik({
   mapPropsToValues({ values }) {
     return {
@@ -126,6 +123,7 @@ let SearchField = withFormik({
 
 // ------------------------------------------------------------------------------------------- //
 
+// To run typechecking on the props for a component, you can assign the special propTypes property:
 Container.propTypes = {
   classes: PropTypes.object.isRequired,
 };

@@ -7,7 +7,6 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import { withStyles } from "@material-ui/core/styles";
 
-
 const styles = () => ({
   textField: {
     width: "50%",
@@ -23,9 +22,15 @@ const styles = () => ({
   },
 });
 
-
 let TextInputField = (props) => {
-  const { values, classes, handleChange, submittedValue, isSubmitting,handleSubmit } = props;
+  const {
+    values,
+    classes,
+    handleChange,
+    submittedValue,
+    isSubmitting,
+    handleSubmit,
+  } = props;
   return (
     <React.Fragment>
       <TextField
@@ -36,12 +41,13 @@ let TextInputField = (props) => {
         name="search"
         placeholder="Movie title"
         value={values}
-        onChange={handleChange}  
+        onChange={handleChange}
         onKeyPress={(ev) => {
-        if (ev.key === 'Enter') {
-         handleSubmit();
-        }
-      }}
+          if (ev.key === "Enter") {
+            handleSubmit();
+            ev.target.blur();
+          }
+        }}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">

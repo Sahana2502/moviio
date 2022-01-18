@@ -8,7 +8,7 @@ import { useQuery } from "@apollo/client";
 
 // Components
 import ImageCard from "./imagecard";
-import Error from "./error"
+import Error from "./error";
 
 // Material-UI components
 import { Grid } from "@material-ui/core";
@@ -35,14 +35,14 @@ const DisplayMovies = (props) => {
   });
 
   //sorting movies in descending order of year of release
-  if(data !== undefined && data.BySearch!==null){
-  movies=[...data.BySearch]
-  movies.sort((movie1,movie2)=>(movie2.Year.localeCompare(movie1.Year)));
+  if (data !== undefined && data.BySearch !== null) {
+    movies = [...data.BySearch];
+    movies.sort((movie1, movie2) => movie2.Year.localeCompare(movie1.Year));
   }
 
   if (loading) return "Loading...";
-  if (error) return (<Error/>)
-  if (movies == null) return (<Error singleTitle={singleTitle} />) 
+  if (error) return <Error />;
+  if (movies == null) return <Error singleTitle={singleTitle} />;
   return movies.map((titles, i) => {
     return (
       <Grid item style={{ margin: "3em 1em" }} key={i}>
@@ -55,7 +55,7 @@ const DisplayMovies = (props) => {
       </Grid>
     );
   });
-  };
+};
 // ------------------------------------------------------------------------------------------- //
 
 DisplayMovies.propTypes = {
