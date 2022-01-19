@@ -25,7 +25,7 @@ The app does the following:
 ## Building the Moviio App
 Make sure Node.js is installed on your machine
 (The app was built using Visual Studio Code and tested on Ubuntu)
-* First create an empty folde# moviior and clone the repo:`https://github.com/Sahana2502/movie-app/` by navigating to the directory.
+* First create an empty folde# moviior and clone the repo:` git clone https://github.com/Sahana2502/movie-app/ --branch sahanaDev --single-branch` by navigating to the directory.
 * Open the project in VS Code using `code .`
 * Open the terminal and type `npm install` to install all the mentioned dependencies in global `package.json` file
 * Navigate to client folder as `cd client` and type `npm install` to install all the mentioned dependencied in `package.json` file for the client.
